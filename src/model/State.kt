@@ -12,5 +12,7 @@ class State(val isInitial: Boolean = false, val isFinal: Boolean = false, val la
         var count = 0
     }
 
+    override fun equals(other: Any?) = other is State && other.label == label
+
     override fun toString() = label
 }

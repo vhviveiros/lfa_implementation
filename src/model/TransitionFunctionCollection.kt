@@ -9,6 +9,10 @@ class TransitionFunctionCollection : Iterable<TransitionFunction> {
     val size
         get() = functions.size
 
+    fun next(state: State, alphabet: Alphabet) = functions.filter {
+        it.fromState == state && it.alphabet == alphabet
+    }.map { it.toState }
+
     fun insert(transitionFunction: TransitionFunction) {
         functions.add(transitionFunction)
 
@@ -28,17 +32,19 @@ class TransitionFunctionCollection : Iterable<TransitionFunction> {
         val alphabet = transitionFunction.alphabet
         val states = arrayOf(transitionFunction.fromState, transitionFunction.toState)
 
-        if (functions.none{ it.alphabet == alphabet })
+        if (functions.none { it.alphabet == alphabet })
             alphabetCollection.remove(alphabet)
 
-        if (functions.none{ states.contains(it.fromState) })
+        if (functions.none { states.contains(it.fromState) })
             stateCollection.remove(states[0])
 
-        if (functions.none{ states.contains(it.toState) })
+        if (functions.none { states.contains(it.toState) })
             stateCollection.remove(states[1])
     }
 
     fun toMatrix() = TransitionMatrix(this)
 
     override fun iterator(): Iterator<TransitionFunction> = functions.iterator()
+
+    override fun toString() = functions.toString().replace(',', '\n')
 }

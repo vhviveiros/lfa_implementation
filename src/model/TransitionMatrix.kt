@@ -3,8 +3,8 @@ package model
 class TransitionMatrix(val transitionFunctionCollection: TransitionFunctionCollection) {
     private lateinit var matrix: Array<Array<State?>>
 
-    val alphabetCollection = HashMap<Alphabet, Int>()
-    val stateCollection = HashMap<State, Int>()
+    val alphabetIndexes = HashMap<Alphabet, Int>()
+    val stateIndexes = HashMap<State, Int>()
 
     init {
         buildCollections()
@@ -13,10 +13,10 @@ class TransitionMatrix(val transitionFunctionCollection: TransitionFunctionColle
 
     private fun buildCollections() {
         for (i in 0 until transitionFunctionCollection.alphabetCollection.size)
-            alphabetCollection.put(transitionFunctionCollection.alphabetCollection[i], i)
+            alphabetIndexes[transitionFunctionCollection.alphabetCollection[i]] = i
 
         for (i in 0 until transitionFunctionCollection.stateCollection.size)
-            stateCollection.put(transitionFunctionCollection.stateCollection[i], i)
+            stateIndexes[transitionFunctionCollection.stateCollection[i]] = i
     }
 
     private fun buildMatrix() {
@@ -25,7 +25,7 @@ class TransitionMatrix(val transitionFunctionCollection: TransitionFunctionColle
         }
 
         for (i in transitionFunctionCollection) {
-            matrix[stateCollection[i.fromState]!!][alphabetCollection[i.alphabet]!!] = i.toState
+            matrix[stateIndexes[i.fromState]!!][alphabetIndexes[i.alphabet]!!] = i.toState
         }
     }
 
@@ -34,7 +34,7 @@ class TransitionMatrix(val transitionFunctionCollection: TransitionFunctionColle
         for (i in transitionFunctionCollection.alphabetCollection)
             returnValue += "   $i  |"
 
-        for (i in 0 until matrix.size) {
+        for (i in matrix.indices) {
             returnValue += "\n|"
             for (j in -1 until matrix[i].size) {
                 if (j == -1)
@@ -52,4 +52,7 @@ class TransitionMatrix(val transitionFunctionCollection: TransitionFunctionColle
 
         return returnValue
     }
+
+    operator fun get(state: State, alphabet: Alphabet) =
+        matrix[stateIndexes[state]!!][alphabetIndexes[alphabet]!!]
 }

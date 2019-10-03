@@ -1,5 +1,5 @@
 package model
 
-class TransitionFunction(val fromState: State, val toState: State, val alphabet: Alphabet) {
+class TransitionFunction(val fromState: State, val alphabet: Alphabet, val toState: State) {
     override fun toString() = "$fromState--($alphabet)-->$toState"
 }

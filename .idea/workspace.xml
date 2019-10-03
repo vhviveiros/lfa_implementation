@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e00c358-5e7a-4d3d-93b0-70d0c273e7af" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Alphabet.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Automaton.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/State.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/TransitionFunction.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/TransitionFunctionCollection.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/TransitionMatrix.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Alphabet.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Alphabet.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Automaton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Automaton.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/State.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/State.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/TransitionFunction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TransitionFunction.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/TransitionFunctionCollection.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TransitionFunctionCollection.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/TransitionMatrix.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TransitionMatrix.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,6 +35,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
@@ -88,8 +88,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1570054313670</updated>
-      <workItem from="1570054316696" duration="9347000" />
+      <workItem from="1570054316696" duration="10032000" />
+      <workItem from="1570106529203" duration="5965000" />
     </task>
+    <task id="LOCAL-00001" summary="First Commit">
+      <created>1570063826749</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1570063826749</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,11 +109,17 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="First Commit" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
