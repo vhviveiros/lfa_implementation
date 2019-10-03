@@ -1,7 +1,10 @@
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import model.*
 import java.util.concurrent.CompletableFuture
 
-fun main() {
+fun main() = runBlocking<Unit> {
     val states = arrayOf(
         State(isInitial = true, isFinal = true),
         State(isFinal = true),
@@ -24,5 +27,7 @@ fun main() {
 
 //    println(automaton.toMatrix())
 //    println(transitionCollection)
-    println(automaton.verifySentence("11100"))
+    launch {
+        println(automaton.verifySentence("11100"))
+    }
 }

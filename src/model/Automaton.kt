@@ -1,8 +1,8 @@
 package model
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.util.*
-import java.util.concurrent.CompletableFuture
-import kotlin.collections.ArrayList
 
 class Automaton(val transitionFunctionCollection: TransitionFunctionCollection) {
     fun getInitialState() = transitionFunctionCollection.stateCollection.first { it.isInitial }
@@ -11,20 +11,22 @@ class Automaton(val transitionFunctionCollection: TransitionFunctionCollection) 
 
     fun toMatrix() = transitionFunctionCollection.toMatrix()
 
-    fun verifySentence(sentence: String): Boolean {
+    suspend fun verifySentence(sentence: String): Boolean = withContext(Dispatchers.Default) {
         //Convert string to queue, so we can pop()
         val queue = LinkedList<Char>()
         queue.addAll(sentence.toCharArray().toTypedArray())
-        return verifySentence(queue, getInitialState())
+
+        return@withContext verifySentence(queue, getInitialState())
     }
 
-    private fun verifySentence(sentence: LinkedList<Char>, state: State): Boolean {
-        if (sentence.isEmpty())
-            return state.isFinal
+    private suspend fun verifySentence(sentence: LinkedList<Char>, state: State): Boolean =
+        withContext(Dispatchers.Default) {
+            if (sentence.isEmpty())
+                return@withContext state.isFinal
 
-        for (i in transitionFunctionCollection.next(state, Alphabet(sentence.pop())))
-            return verifySentence(sentence, i)
+            for (i in transitionFunctionCollection.next(state, Alphabet(sentence.pop())))
+                return@withContext verifySentence(sentence, i)
 
-        return false
-    }
+            return@withContext false
+        }
 }
