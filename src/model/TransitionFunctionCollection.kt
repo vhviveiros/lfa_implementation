@@ -2,18 +2,32 @@ package model
 
 typealias TransitionFunctions = ArrayList<TransitionFunction>
 
-class TransitionFunctionCollection : Iterable<TransitionFunction> {
+class TransitionFunctionCollection(transitionFunctionList: List<TransitionFunction>? = null) : Iterable<TransitionFunction> {
     val functions = TransitionFunctions()
     val stateCollection = ArrayList<State>()
     val alphabetCollection = ArrayList<Alphabet>()
     val size
         get() = functions.size
 
+    init {
+        transitionFunctionList?.let {
+            for (i in it)
+                insert(i)
+        }
+    }
+
     fun next(state: State, alphabet: Alphabet) = functions.filter {
-        it.fromState == state && it.alphabet == alphabet
-    }.map { it.toState }
+        it.fromState == state && (it.alphabet == alphabet || it.alphabet.isVoid())
+    }
+
+    fun hasVoidPath(state: State) = functions.any { it.fromState == state && it.alphabet.isVoid() }
+
+    fun getVoidPaths(state: State) = functions.filter { it.fromState == state && it.alphabet.isVoid() }
 
     fun insert(transitionFunction: TransitionFunction) {
+        if (functions.contains(transitionFunction))
+            return
+
         functions.add(transitionFunction)
 
         if (!stateCollection.contains(transitionFunction.fromState))
@@ -42,7 +56,7 @@ class TransitionFunctionCollection : Iterable<TransitionFunction> {
             stateCollection.remove(states[1])
     }
 
-    fun toMatrix() = TransitionMatrix(this)
+    suspend fun toMatrix() = TransitionMatrix().fromTransitionFunctionCollection(this)
 
     override fun iterator(): Iterator<TransitionFunction> = functions.iterator()
 
