@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+    <left>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <Text id="text_alphabet" strokeType="OUTSIDE" strokeWidth="0.0" text="Alfabeto" textAlignment="CENTER">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Text>
+                <TextField fx:id="edtAlphabet" onAction="#onAddAlphabet" />
+                <ListView fx:id="alphabetList" onMouseClicked="#onRemoveAlphabet" prefHeight="400" prefWidth="150.0" />
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+            <children>
+                <Text id="text_state" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado" textAlignment="CENTER">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Text>
+                <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <TextField fx:id="edtState" onAction="#onAddState" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <CheckBox fx:id="chkInitial" mnemonicParsing="false" onAction="#onSetIsInitial" text="Inicial" />
+                                <CheckBox fx:id="chkFinal" mnemonicParsing="false" onAction="#onSetIsFinal" text="Final">
+                                    <HBox.margin>
+                                        <Insets left="4.0" />
+                                    </HBox.margin>
+                                </CheckBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <ListView fx:id="stateList" onMouseClicked="#onRemoveState" prefHeight="400" prefWidth="200.0" />
+            </children>
+        </VBox>
+    </center>
+    <right>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <Text id="text_function" strokeType="OUTSIDE" strokeWidth="0.0" text="Função" textAlignment="CENTER">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Text>
+                <Text fx:id="functionState" fill="#2d69d0" strokeType="OUTSIDE" strokeWidth="0.0" text="σ(,)=">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                    </VBox.margin>
+                </Text>
+                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAddFunction" text="Adicionar" />
+                <ListView fx:id="functionList" onMouseClicked="#onRemoveFunction" prefHeight="400" prefWidth="200.0" />
+            </children>
+        </VBox>
+    </right>
+   <bottom>
+      <VBox prefHeight="80.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClear" text="Limpar" />
+              <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="200.0">
+                  <children>
+                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sentença:">
+                          <font>
+                              <Font size="15.0" />
+                          </font>
+                          <HBox.margin>
+                              <Insets right="4.0" />
+                          </HBox.margin>
+                      </Text>
+                      <TextField fx:id="edtSentence">
+                          <HBox.margin>
+                              <Insets left="8.0" right="8.0" />
+                          </HBox.margin>
+                      </TextField>
+                      <Button fx:id="btnVerify" mnemonicParsing="false" onAction="#onVerify" text="Verificar!">
+                          <HBox.margin>
+                              <Insets left="8.0" right="8.0" />
+                          </HBox.margin>
+                      </Button>
+                      <Text fx:id="result" strokeType="OUTSIDE" strokeWidth="0.0" text="      ">
+                          <HBox.margin>
+                              <Insets left="16.0" right="8.0" />
+                          </HBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                      </Text>
+                  </children>
+              </HBox>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>

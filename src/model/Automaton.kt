@@ -9,7 +9,7 @@ class Automaton(val transitionFunctionCollection: TransitionFunctionCollection) 
 
     fun getFinalStates() = transitionFunctionCollection.stateCollection.filter { it.isFinal }
 
-    fun toMatrix() = transitionFunctionCollection.toMatrix()
+    suspend fun toMatrix() = transitionFunctionCollection.toMatrix()
 
     suspend fun verifySentence(sentence: String): Boolean = withContext(Dispatchers.Default) {
         //Convert string to queue, so we can pop()
@@ -19,14 +19,22 @@ class Automaton(val transitionFunctionCollection: TransitionFunctionCollection) 
         return@withContext verifySentence(queue, getInitialState())
     }
 
-    private suspend fun verifySentence(sentence: LinkedList<Char>, state: State): Boolean =
-        withContext(Dispatchers.Default) {
-            if (sentence.isEmpty())
-                return@withContext state.isFinal
+    private fun verifySentence(sentence: LinkedList<Char>, state: State): Boolean {
+        if (sentence.isEmpty())
+            return state.isFinal || transitionFunctionCollection.getVoidPaths(state).any { it.toState.isFinal }
 
-            for (i in transitionFunctionCollection.next(state, Alphabet(sentence.pop())))
-                return@withContext verifySentence(sentence, i)
+        val char = sentence[0]
+        val paths = transitionFunctionCollection.next(state, Alphabet(char))
 
-            return@withContext false
+        paths.forEach {
+            val copy = LinkedList<Char>()
+            copy.addAll(sentence)
+            if (!it.alphabet.isVoid())
+                copy.pop()
+            if (verifySentence(copy, it.toState))
+                return true
         }
+
+        return false
+    }
 }

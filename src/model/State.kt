@@ -2,7 +2,7 @@ package model
 
 typealias States = Array<State>
 
-class State(val isInitial: Boolean = false, val isFinal: Boolean = false, val label: String = "q$count") {
+class State(var isInitial: Boolean = false, var isFinal: Boolean = false, val label: String = "q$count") {
 
     init {
         count++
@@ -14,5 +14,5 @@ class State(val isInitial: Boolean = false, val isFinal: Boolean = false, val la
 
     override fun equals(other: Any?) = other is State && other.label == label
 
-    override fun toString() = label
+    override fun toString() = "${if (isInitial) "*" else ""}$label${if (isFinal) "*" else ""}"
 }
